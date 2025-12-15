@@ -1,5 +1,6 @@
 // Import pages
 import { homePage } from "../pages/home.js";
+import { gamesListPage } from "../pages/games-list.js";
 
 // Import components
 import "../components/t-navbar.js";
@@ -7,7 +8,8 @@ import "../components/t-footer.js";
 
 // Combine all pages into the pageContent object
 const pageContent = {
-  home: homePage,
+  "home-page": homePage,
+  "games-list-page": gamesListPage,
 };
 
 // Get a reference to the main content area where pages will be injected
@@ -63,6 +65,9 @@ document.addEventListener("click", (event) => {
 
   // Ignore clicks outside data-page elements
   if (!button) return;
+
+  // Prevents the a tags to load a page
+  event.preventDefault();
 
   // Dispatch a custom navigate event so updateMainContent runs
   document.dispatchEvent(
