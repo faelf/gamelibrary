@@ -11,7 +11,7 @@ class TNavbar extends HTMLElement {
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a href="#home-page" class="nav-link" data-page="home-page">Home</a>
+              <a href="#dashboard-page" class="nav-link" data-page="dashboard-page">Dashboard</a>
             </li>
             <li class="nav-item">
               <a href="#games-list-page" class="nav-link" data-page="games-list-page">Games List</a>

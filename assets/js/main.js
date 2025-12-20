@@ -10,7 +10,7 @@ import "../components/t-add-game.js";
 
 // Combine all pages into the pageContent object
 const pageContent = {
-  "home-page": homePage,
+  "dashboard-page": homePage,
   "games-list-page": gamesListPage,
   "settings-page": settingsPage,
 };
@@ -86,7 +86,7 @@ document.addEventListener("click", (event) => {
 */
 window.addEventListener("load", () => {
   // Get the page name from the URL hash (without the '#' symbol)
-  const initialPage = window.location.hash.substring(1) || "home-page";
+  const initialPage = window.location.hash.substring(1) || "dashboard-page";
   // Load the initial page
   updateMainContent(initialPage);
 });
@@ -99,7 +99,7 @@ window.addEventListener("load", () => {
 */
 window.addEventListener("popstate", () => {
   // Get page from hash or default
-  const currentPage = window.location.hash.substring(1) || "home-page";
+  const currentPage = window.location.hash.substring(1) || "dashboard-page";
   // Load the page
   updateMainContent(currentPage);
 });
