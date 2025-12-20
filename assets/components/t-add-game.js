@@ -98,6 +98,7 @@ class TAddGame extends HTMLElement {
 
     // Loads games from local storage
     const games = gamesStorage.load();
+    const form = document.getElementById("add-game-form");
     const addGameBtn = document.getElementById("add-game-btn");
 
     function addGame() {
@@ -130,6 +131,9 @@ class TAddGame extends HTMLElement {
         document.getElementById("add-game")
       );
       modal.hide();
+
+      // Clear the form
+      form.reset();
     }
 
     addGameBtn.addEventListener("click", addGame);
