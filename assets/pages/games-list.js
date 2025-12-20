@@ -46,6 +46,16 @@ export const gamesListPage = {
       setupDeleteButtons();
     }
 
+    // Format purchase date for display
+    function formatPurchaseDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+    }
+
     // Display empty state message
     function displayEmptyState(container) {
       container.innerHTML = /* html */ `
@@ -88,16 +98,6 @@ export const gamesListPage = {
         </td>
       </tr>
     `;
-    }
-
-    // Format purchase date for display
-    function formatPurchaseDate(dateString) {
-      const date = new Date(dateString);
-      return date.toLocaleDateString("en-GB", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      });
     }
 
     // Attach click handlers to all delete buttons
