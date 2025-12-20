@@ -25,7 +25,6 @@ export const gamesListPage = {
 
   setup() {
     const games = gamesStorage.load();
-    console.log(games);
 
     const games_container = document.getElementById("games-container");
     const tbody = document.getElementById("games-list");
