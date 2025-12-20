@@ -37,7 +37,10 @@ export const settingsPage = {
             </p>
             <div class="input-group">
               <input id="import-data" type="file" class="form-control" aria-label="Upload">
-              <button class="btn btn-primary" type="button" id="import-data-btn">Import & Replace</button>
+              <button class="btn btn-primary" type="button" id="import-data-btn">
+                <span class="bi bi-cloud-arrow-up-fill"></span>
+                Import & Replace
+              </button>
             </div>
           </div>
 
@@ -223,6 +226,12 @@ export const settingsPage = {
       if (!confirmed) {
         return;
       }
+
+      // Show toast notification
+      toastBody.innerText = "Data deleted successfully!";
+      const toastElement = document.getElementById("currency-toast");
+      const toast = new bootstrap.Toast(toastElement);
+      toast.show();
 
       gamesData = [];
       gamesStorage.save(gamesData);
