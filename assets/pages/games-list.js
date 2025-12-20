@@ -1,13 +1,47 @@
+import { games } from "../data/games.js";
+
 export const gamesListPage = {
   title: "Games List",
   html: /* html */ `
-  <section class="card m-2">
-    <div class="card-header bg-secondary text-white">
-      <h2>Games List</h2>
-    </div>
-    <div class="card-body">
-      <p>Games List</p>
-    </div>
+  <section class="m-2">
+    <h2>Games List</h2>
+    <table class="table table-striped table-hover align-middle">
+      <thead class="sticky-top">
+        <tr>
+          <th>Name</th><th>Platform</th><th>Year</th><th>Status</th><th>Purchase</th><th>Price</th><th>Edit</th><th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="games-list" class="table-group-divider">
+      </tbody>
+    </table>
   </section>
   `,
+
+  setup() {
+    const tbody = document.getElementById("games-list");
+
+    function renderGameRow(game) {
+      const date = new Date(game.purchase_date);
+      const formattedDate = date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+
+      tbody.innerHTML += /* html */ `
+      <tr>
+        <td data-cell="Name">${game.name}</td>
+        <td data-cell="Platform">${game.platform}</td>
+        <td data-cell="Year">${game.year}</td>
+        <td data-cell="Status">${game.status}</td>
+        <td data-cell="Purchase Date">${formattedDate}</td>
+        <td data-cell="Price">£${parseFloat(game.price).toFixed(2)}</td>
+        <td data-cell="Edit"><button type="button" class="btn btn-sm btn-warning">Edit</button></td>
+        <td data-cell="Delete"><button type="button" class="btn btn-sm btn-danger">Delete</button></td>
+      </tr>
+    `;
+    }
+
+    games.forEach(renderGameRow);
+  },
 };
