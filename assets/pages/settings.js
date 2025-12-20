@@ -1,3 +1,5 @@
+import { gamesStorage } from "../data/games-storage.js";
+
 export const settingsPage = {
   title: "Settings",
   html: /* html */ `
@@ -71,7 +73,7 @@ export const settingsPage = {
               Permanently removes <strong>all games</strong> from your library.<br>
               This action cannot be undone.
             </p>
-            <button class="btn btn-danger">
+            <button class="btn btn-danger" id="delete-data">
               <span class="bi-trash3-fill"></span>
               Delete All Games
             </button>
@@ -99,6 +101,20 @@ export const settingsPage = {
   `,
   setup() {
     const currency = document.getElementById("currency-select");
+    const deleteData = document.getElementById("delete-data");
+    let gamesData = gamesStorage.load();
+
+    // Delete Data
+    deleteData.addEventListener("click", function () {
+      // Ask user to confirm deletion
+      const confirmed = confirm("Are you sure you want to delete all data?");
+      if (!confirmed) {
+        return;
+      }
+
+      gamesData = [];
+      gamesStorage.save(gamesData);
+    });
 
     // Load current currency £ default
     const currentCurrency = localStorage.getItem("currency") || "£";
