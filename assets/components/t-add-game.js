@@ -135,7 +135,7 @@ class TAddGame extends HTMLElement {
       // Clear the form
       form.reset();
 
-      // Trigger a custom event to refresh games list
+      // Refresh games list
       window.dispatchEvent(new CustomEvent("game-added"));
     }
 
