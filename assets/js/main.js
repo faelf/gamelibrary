@@ -1,6 +1,7 @@
 // Import pages
 import { homePage } from "../pages/home.js";
 import { gamesListPage } from "../pages/games-list.js";
+import { settingsPage } from "../pages/settings.js";
 
 // Import components
 import "../components/t-navbar.js";
@@ -11,6 +12,7 @@ import "../components/t-add-game.js";
 const pageContent = {
   "home-page": homePage,
   "games-list-page": gamesListPage,
+  "settings-page": settingsPage,
 };
 
 // Get a reference to the main content area where pages will be injected
