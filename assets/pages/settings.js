@@ -160,8 +160,14 @@ export const settingsPage = {
 
       // Release the object URL
       URL.revokeObjectURL(url);
+
+      toastBody.innerText = "Data exported successfully!";
+      const toastElement = document.getElementById("currency-toast");
+      const toast = new bootstrap.Toast(toastElement);
+      toast.show();
     }
 
+    // Import CSV
     importBtn.addEventListener("click", () => {
       const file = importInput.files[0];
       if (!file) {
