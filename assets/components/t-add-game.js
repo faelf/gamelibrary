@@ -108,15 +108,6 @@ class TAddGame extends HTMLElement {
       const purchaseDate = document.getElementById("game-purchase-date").value;
       const price = document.getElementById("game-price").value;
 
-      console.log("Form data:", {
-        name: gameTitle,
-        platform: platform,
-        status: status,
-        year: year,
-        purchase_date: purchaseDate,
-        price: price,
-      });
-
       // Create new game object
       const newGame = {
         id: Date.now(),
@@ -133,8 +124,6 @@ class TAddGame extends HTMLElement {
 
       // Updates the array on Local Storage
       gamesStorage.save(games);
-
-      console.log("New game created:", newGame);
     }
 
     addGameBtn.addEventListener("click", addGame);
