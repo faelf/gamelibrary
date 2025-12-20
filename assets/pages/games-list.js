@@ -5,6 +5,9 @@ export const gamesListPage = {
   html: /* html */ `
   <section class="m-2">
     <h2>Games List</h2>
+    <div class="d-flex justify-content-end">
+      <t-add-game></t-add-game>
+    </div>
     <table class="table table-striped table-hover align-middle">
       <thead class="sticky-top">
         <tr>
