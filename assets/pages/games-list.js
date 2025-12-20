@@ -7,7 +7,7 @@ export const gamesListPage = {
   <section class="m-2">
     <h2>Games List</h2>
     <div class="d-flex justify-content-end">
-      <t-add-game></t-add-game>
+      <t-add-game-btn></t-add-game-btn>
     </div>
     <div id="games-container">
       <table class="table table-striped table-hover align-middle">
