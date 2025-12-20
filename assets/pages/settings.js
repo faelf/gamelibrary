@@ -29,20 +29,20 @@ export const settingsPage = {
         <div class="row">
 
           <!-- Import (Replace) -->
-          <div class="col-md-6 col-xl-4 mb-3">
+          <div class="col-md-12 col-xl-6 mb-3">
             <h4>Import Game Data</h4>
             <p class="card-text">
               Restore your library from an exported file.<br>
               <strong>All existing data will be replaced.</strong>
             </p>
-            <button class="btn btn-primary">
-              <span class="bi bi-cloud-arrow-up-fill"></span>
-              Import & Replace
-            </button>
+            <div class="input-group">
+              <input id="import-data" type="file" class="form-control" aria-label="Upload">
+              <button class="btn btn-primary" type="button" id="import-data-btn">Import & Replace</button>
+            </div>
           </div>
 
           <!-- Merge -->
-          <div class="col-md-6 col-xl-4 mb-3">
+          <div class="col-md-12 col-xl-6 mb-3">
             <h4>Merge Game Data</h4>
             <p class="card-text">
               Add games from an exported file to your existing library.<br>
@@ -55,7 +55,7 @@ export const settingsPage = {
           </div>
 
           <!-- Export -->
-          <div class="col-md-6 col-xl-4 mb-3">
+          <div class="col-md-6 col-xl-6 mb-3">
             <h4>Export Game Data</h4>
             <p class="card-text">
               Download your entire game library as a file for backup or transfer.
@@ -67,7 +67,7 @@ export const settingsPage = {
           </div>
 
           <!-- Delete -->
-          <div class="col-md-6 col-xl-4 mb-3">
+          <div class="col-md-6 col-xl-6 mb-3">
             <h4>Delete Game Data</h4>
             <p class="card-text">
               Permanently removes <strong>all games</strong> from your library.<br>
@@ -92,17 +92,19 @@ export const settingsPage = {
         <strong class="me-auto">Success</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
       </div>
-      <div class="toast-body">
-        Currency saved successfully!
+      <div class="toast-body" id="toast-body">
       </div>
     </div>
   </div>
 
   `,
   setup() {
+    const toastBody = document.getElementById("toast-body");
     const currency = document.getElementById("currency-select");
     const deleteData = document.getElementById("delete-data");
     const exportButton = document.getElementById("export-data");
+    const importInput = document.getElementById("import-data");
+    const importBtn = document.getElementById("import-data-btn");
     let gamesData = gamesStorage.load();
 
     // Export into CSV
@@ -157,6 +159,61 @@ export const settingsPage = {
       URL.revokeObjectURL(url);
     }
 
+    importBtn.addEventListener("click", () => {
+      const file = importInput.files[0];
+      if (!file) {
+        alert("Please select a CSV file first.");
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const text = e.target.result;
+
+        // Split CSV into rows
+        const rows = text.trim().split("\n");
+
+        if (rows.length < 2) {
+          alert("CSV file is empty or invalid.");
+          return;
+        }
+
+        // Get headers
+        const headers = rows.shift().split(",");
+
+        // Parse rows into objects
+        const importedGames = rows.map((row) => {
+          const values = row.split(",");
+          const game = {};
+          headers.forEach((header, i) => {
+            let val = values[i];
+            if (val.startsWith('"') && val.endsWith('"')) {
+              val = val.slice(1, -1); // Remove quotes
+            }
+            // Convert numeric fields
+            if (header === "id" || header === "year") val = Number(val);
+            game[header] = val;
+          });
+          return game;
+        });
+
+        // Replace current library
+        gamesStorage.save(importedGames);
+
+        // Show toast notification
+        toastBody.innerText = `Imported ${importedGames.length} games successfully!`;
+        const toastElement = document.getElementById("currency-toast");
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
+
+        // Reset file input
+        importInput.value = "";
+      };
+
+      reader.readAsText(file);
+    });
+
     exportButton.addEventListener("click", exportGamesToCSV);
 
     // Delete Data
@@ -181,6 +238,7 @@ export const settingsPage = {
       console.log("Currency saved:", e.target.value);
 
       // Show toast notification
+      toastBody.innerText = "Currency saved successfully!";
       const toastElement = document.getElementById("currency-toast");
       const toast = new bootstrap.Toast(toastElement);
       toast.show();
