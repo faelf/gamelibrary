@@ -1,7 +1,7 @@
 import { config } from "../data/config.js";
 
 export const homePage = {
-  title: "Home",
+  title: "Dashboard",
   html: /* html */ `
   <section class="m-2">
       <h2 id="greeting"></h2>
@@ -11,6 +11,6 @@ export const homePage = {
   setup() {
     const greetingText = document.getElementById("greeting");
     const firstName = config.getFirstName();
-    greeting.innerText = `Hello, ${firstName}!`;
+    greetingText.innerText = `Hello, ${firstName}!`;
   },
 };
