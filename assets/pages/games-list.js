@@ -24,66 +24,119 @@ export const gamesListPage = {
   `,
 
   setup() {
+    // Main render function
     function renderGames() {
       const games = gamesStorage.load();
       const games_container = document.getElementById("games-container");
       const tbody = document.getElementById("games-list");
 
+      // Show empty state if no games exist
       if (games.length === 0) {
-        games_container.innerHTML = /* html */ `
-        <div class="text-center py-5">
-          <span class="bi bi-controller display-1 text-muted"></span>
-          <h4 class="mt-3">No games in your library yet</h4>
-          <p class="text-muted">Click the "Add Game" button to start tracking your collection!</p>
-        </div>
-      `;
+        displayEmptyState(games_container);
         return;
       }
 
-      // Clear tbody before rendering
+      // Clear table and render all games
       tbody.innerHTML = "";
+      games.forEach(function (game) {
+        addGameRowToTable(game, tbody);
+      });
 
-      function renderGameRow(game) {
-        const currency = config.getCurrency();
+      // Attach event listeners to delete buttons
+      setupDeleteButtons();
+    }
 
-        const date = new Date(game.purchase_date);
-        const formattedDate = date.toLocaleDateString("en-GB", {
-          day: "numeric",
-          month: "short",
-          year: "numeric",
-        });
+    // Display empty state message
+    function displayEmptyState(container) {
+      container.innerHTML = /* html */ `
+      <div class="text-center py-5">
+        <span class="bi bi-controller display-1 text-muted"></span>
+        <h4 class="mt-3">No games in your library yet</h4>
+        <p class="text-muted">Click the "Add Game" button to start tracking your collection!</p>
+      </div>
+    `;
+    }
 
-        tbody.innerHTML += /* html */ `
-        <tr>
-          <td data-cell="Name">${game.name}</td>
-          <td data-cell="Platform">${game.platform}</td>
-          <td data-cell="Year">${game.year}</td>
-          <td data-cell="Status">${game.status}</td>
-          <td data-cell="Purchase Date">${formattedDate}</td>
-          <td data-cell="Price">
-            ${currency}${parseFloat(game.price).toFixed(2)}
-          </td>
-          <td data-cell="Edit" class="text-lg-center">
-            <button type="button" class="btn btn-sm btn-warning">
-              <span class="bi bi-pencil-square"></span>
-            </button>
-          </td>
-          <td data-cell="Delete" class="text-lg-center">
-            <button type="button" class="btn btn-sm btn-danger">
-              <span class="bi bi-trash3-fill"></span>
-            </button>
-          </td>
-        </tr>
-      `;
+    // Render a single game row
+    function addGameRowToTable(game, tbody) {
+      const currency = config.getCurrency();
+      const formattedDate = formatPurchaseDate(game.purchase_date);
+
+      tbody.innerHTML += /* html */ `
+      <tr>
+        <td data-cell="Name">${game.name}</td>
+        <td data-cell="Platform">${game.platform}</td>
+        <td data-cell="Year">${game.year}</td>
+        <td data-cell="Status">${game.status}</td>
+        <td data-cell="Purchase Date">${formattedDate}</td>
+        <td data-cell="Price">
+          ${currency}${parseFloat(game.price).toFixed(2)}
+        </td>
+        <td data-cell="Edit" class="text-lg-center">
+          <button type="button" class="btn btn-sm btn-warning">
+            <span class="bi bi-pencil-square"></span>
+          </button>
+        </td>
+        <td data-cell="Delete" class="text-lg-center">
+          <button type="button" class="btn btn-sm btn-danger"
+                  data-delete-game
+                  data-game-id="${game.id}">
+            <span class="bi bi-trash3-fill"></span>
+          </button>
+        </td>
+      </tr>
+    `;
+    }
+
+    // Format purchase date for display
+    function formatPurchaseDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+    }
+
+    // Attach click handlers to all delete buttons
+    function setupDeleteButtons() {
+      const deleteButtons = document.querySelectorAll("[data-delete-game]");
+      deleteButtons.forEach(function (button) {
+        button.addEventListener("click", handleDeleteGame);
+      });
+    }
+
+    // Handle game deletion
+    function handleDeleteGame(event) {
+      const button = event.target.closest("button");
+      const gameId = parseInt(button.getAttribute("data-game-id"));
+
+      // Ask user to confirm deletion
+      const confirmed = confirm("Are you sure you want to delete this game?");
+      if (!confirmed) {
+        return;
       }
 
-      games.forEach(renderGameRow);
+      // Remove game from storage
+      removeGameFromStorage(gameId);
+
+      // Refresh the games list
+      window.dispatchEvent(new CustomEvent("game-added"));
+    }
+
+    // Remove a game from localStorage by ID
+    function removeGameFromStorage(gameId) {
+      const games = gamesStorage.load();
+      const updatedGames = games.filter(function (game) {
+        return game.id !== gameId;
+      });
+      gamesStorage.save(updatedGames);
     }
 
     // Initial render
     renderGames();
 
-    // Listen for new games
+    // Listen for game additions (refresh list when new game added)
     window.addEventListener("game-added", renderGames);
   },
 };
