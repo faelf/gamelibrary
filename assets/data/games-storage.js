@@ -11,4 +11,9 @@ export const gamesStorage = {
     console.log("No games found, starting with empty array");
     return [];
   },
+  save(games) {
+    console.log("Saving games:", games);
+    localStorage.setItem("game-library", JSON.stringify(games));
+    console.log("Games saved!");
+  },
 };
