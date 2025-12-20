@@ -1,4 +1,5 @@
 import { config } from "../data/config.js";
+import { gamesStorage } from "../data/games-storage.js";
 
 class TAddGame extends HTMLElement {
   connectedCallback() {
@@ -95,6 +96,8 @@ class TAddGame extends HTMLElement {
 
    `;
 
+    // Loads games from local storage
+    const games = gamesStorage.load();
     const addGameBtn = document.getElementById("add-game-btn");
 
     function addGame() {
@@ -113,6 +116,25 @@ class TAddGame extends HTMLElement {
         purchase_date: purchaseDate,
         price: price,
       });
+
+      // Create new game object
+      const newGame = {
+        id: Date.now(),
+        name: gameTitle, // String
+        platform: platform, // String
+        status: status, // String
+        year: year, // String
+        purchase_date: purchaseDate, // String
+        price: parseFloat(price).toFixed(2), // Float
+      };
+
+      // Pushes new game to the array
+      games.push(newGame);
+
+      // Updates the array on Local Storage
+      gamesStorage.save(games);
+
+      console.log("New game created:", newGame);
     }
 
     addGameBtn.addEventListener("click", addGame);
