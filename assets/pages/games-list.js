@@ -5,9 +5,21 @@ export const gamesListPage = {
   title: "Games List",
   html: /* html */ `
   <section class="m-2">
-    <h2>Games List</h2>
-    <div class="d-flex justify-content-end">
-      <t-add-game-btn></t-add-game-btn>
+    <div class="row g-2 align-items-center mb-3">
+      <div class="col-12 col-md-4">
+        <h2 class="mb-0">Games List</h2>
+      </div>
+      <div class="col-12 col-md-5">
+        <div class="input-group">
+          <span class="input-group-text">
+            <span class="bi bi-search"></span>
+          </span>
+          <input type="text" class="form-control" placeholder="Search by title">
+        </div>
+      </div>
+      <div class="col-12 col-md-3 text-md-end">
+        <t-add-game-btn></t-add-game-btn>
+      </div>
     </div>
     <div id="games-container">
       <table class="table table-striped table-hover align-middle">
