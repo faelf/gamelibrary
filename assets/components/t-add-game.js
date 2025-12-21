@@ -29,14 +29,17 @@ class TAddGame extends HTMLElement {
       <form id="add-game-form">
         <div class="modal-body">
           <div class="row">
+            <!-- Game Title -->
             <div class="col-12 mb-3">
               <label for="game-title" class="form-label">Game Title</label>
               <input type="text" class="form-control" id="game-title" required>
             </div>
+            <!-- Game Platform -->
             <div class="col-6 mb-3">
-              <label class="form-label" for="platform">Platform</label>
-              <select class="form-select" id="platform" name="platform" required>
+              <label class="form-label" for="game-platform">Platform</label>
+              <select class="form-select" id="game-platform" name="game-platform" required>
                 <option value="" selected disabled>Select a platform</option>
+                <option value="Nintendo">Nintendo</option>
                 <option value="Super Nintendo">Super Nintendo</option>
                 <option value="Nintendo 64">Nintendo 64</option>
                 <option value="GameCube">GameCube</option>
@@ -47,25 +50,31 @@ class TAddGame extends HTMLElement {
                 <option value="Game Boy">Game Boy</option>
                 <option value="Game Boy Color">Game Boy Color</option>
                 <option value="Game Boy Advance">Game Boy Advance</option>
+                <option value="Nintendo DS">Nintendo DS</option>
+                <option value="Nintendo 3DS">Nintendo 3DS</option>
               </select>
             </div>
+            <!-- Game Status -->
             <div class="col-6 mb-3">
-              <label class="form-label" for="status">Status</label>
-              <select class="form-select" id="status" name="status" required>
+              <label class="form-label" for="game-status">Status</label>
+              <select class="form-select" id="game-status" name="game-status" required>
                 <option value="" selected disabled>Status</option>
                 <option value="Not started">Not started</option>
                 <option value="Playing">Playing</option>
                 <option value="Completed">Completed</option>
               </select>
             </div>
+            <!-- Game Year -->
             <div class="col-4 mb-3">
               <label for="game-year" class="form-label">Year</label>
               <input type="text" class="form-control" id="game-year">
             </div>
+            <!-- Game Purchase Date -->
             <div class="col-4 mb-3">
               <label for="game-purchase-date" class="form-label">Purchase Date</label>
               <input type="date" class="form-control" id="game-purchase-date">
             </div>
+            <!-- Game Price -->
             <div class="col-4 mb-3">
               <label for="game-price" class="form-label">Price</label>
               <div class="input-group">
@@ -73,6 +82,49 @@ class TAddGame extends HTMLElement {
                 <input type="text" class="form-control" id="game-price" required>
               </div>
             </div>
+            <!-- Game Region -->
+            <div class="col-4 mb-3">
+              <label class="form-label" for="game-region">Region</label>
+              <select class="form-select" id="game-region" name="game-region">
+                <option value="" selected disabled>Select region</option>
+                <option value="PAL">PAL</option>
+                <option value="PAL UK">PAL UK</option>
+                <option value="PAL FR">PAL FR</option>
+                <option value="PAL DE">PAL DE</option>
+                <option value="NTSC-U">NTSC-U</option>
+                <option value="NTSC-J">NTSC-J</option>
+                <option value="NTSC-K">NTSC-K</option>
+                <option value="Region Free">Region Free</option>
+              </select>
+            </div>
+            <!-- Game Format -->
+            <div class="col-4 mb-3">
+              <label class="form-label" for="game-format">Format</label>
+              <select class="form-select" id="game-format" name="game-format">
+                <option value="" selected disabled>Select a format</option>
+                <option value="Physical">Physical</option>
+                <option value="Digital">Digital</option>
+              </select>
+            </div>
+            <!-- Game Condition -->
+            <div class="col-4 mb-3">
+              <label class="form-label" for="game-condition">Condition</label>
+              <select class="form-select" id="game-condition" name="game-condition">
+                <option value="" selected disabled>Select a condition</option>
+                <option value="Sealed">Sealed</option>
+                <option value="CIB">Complete in Box (CIB)</option>
+                <option value="Box & Game">Box & Game</option>
+                <option value="Game & Manual">Game & Manual</option>
+                <option value="Loose">Game Only / Cartridge Only (Loose)</option>
+                <option value="Digital">Digital Copy</option>
+              </select>
+            </div>
+            <!-- Game Note -->
+            <div class="col-12 mb-3">
+              <label for="game-note" class="form-label">Note</label>
+              <textarea class="form-control" id="game-note" rows="3"></textarea>
+            </div>
+
           </div>
         </div>
 
@@ -102,21 +154,30 @@ class TAddGame extends HTMLElement {
 
     function addGame() {
       const gameTitle = document.getElementById("game-title").value;
-      const platform = document.getElementById("platform").value;
-      const status = document.getElementById("status").value;
-      const year = document.getElementById("game-year").value;
-      const purchaseDate = document.getElementById("game-purchase-date").value;
-      const price = document.getElementById("game-price").value;
+      const gamePlatform = document.getElementById("game-platform").value;
+      const gameStatus = document.getElementById("game-status").value;
+      const gameYear = document.getElementById("game-year").value;
+      const gamePurchaseDate =
+        document.getElementById("game-purchase-date").value;
+      const gamePrice = document.getElementById("game-price").value;
+      const gameRegion = document.getElementById("game-region").value;
+      const gameNote = document.getElementById("game-note").value;
+      const gameFormat = document.getElementById("game-format").value;
+      const gameCondition = document.getElementById("game-condition").value;
 
       // Create new game object
       const newGame = {
         id: Date.now(),
-        name: gameTitle,
-        platform: platform,
-        status: status,
-        year: year,
-        purchase_date: purchaseDate,
-        price: parseFloat(price).toFixed(2),
+        title: gameTitle,
+        platform: gamePlatform,
+        year: gameYear,
+        region: gameRegion,
+        condition: gameCondition,
+        format: gameFormat,
+        status: gameStatus,
+        purchase_date: gamePurchaseDate,
+        price: parseFloat(gamePrice).toFixed(2),
+        note: gameNote,
       };
 
       // Load fresh games from localStorage
