@@ -108,15 +108,6 @@ class TAddGame extends HTMLElement {
                 <input type="text" class="form-control" id="game-price" required>
               </div>
             </div>
-            <!-- Game Format -->
-            <div class="col-sm-6 col-xl-4 mb-3">
-              <label class="form-label" for="game-format">Format</label>
-              <select class="form-select" id="game-format" name="game-format">
-                <option value="" selected disabled>Select a format</option>
-                <option value="Physical">Physical</option>
-                <option value="Digital">Digital</option>
-              </select>
-            </div>
             <!-- Game Condition -->
             <div class="col-sm-6 col-xl-4 mb-3">
               <label class="form-label" for="game-condition">Condition</label>
@@ -139,7 +130,6 @@ class TAddGame extends HTMLElement {
 
           </div>
         </div>
-
 
         <div class="modal-footer">
           <button id="add-game-btn" type="button" class="btn btn-success">
@@ -174,7 +164,6 @@ class TAddGame extends HTMLElement {
       const gamePrice = document.getElementById("game-price").value;
       const gameRegion = document.getElementById("game-region").value;
       const gameNote = document.getElementById("game-note").value;
-      const gameFormat = document.getElementById("game-format").value;
       const gameCondition = document.getElementById("game-condition").value;
       const gameOwnershipStatus = document.getElementById(
         "game-ownership-status"
@@ -188,7 +177,6 @@ class TAddGame extends HTMLElement {
         year: gameYear,
         region: gameRegion,
         condition: gameCondition,
-        format: gameFormat,
         status: gameStatus,
         ownership: gameOwnershipStatus,
         purchase_date: gamePurchaseDate,

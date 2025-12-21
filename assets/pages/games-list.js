@@ -30,7 +30,6 @@ export const gamesListPage = {
             <th>Year</th>
             <th>Region</th>
             <th>Condition</th>
-            <th>Format</th>
             <th>Status</th>
             <th>Ownership</th>
             <th>Purchase</th>
@@ -103,7 +102,6 @@ export const gamesListPage = {
         <td data-cell="Year">${game.year || "Unkown"}</td>
         <td data-cell="Region">${game.region || "Unkown"}</td>
         <td data-cell="Condition">${game.condition || "Unkown"}</td>
-        <td data-cell="Format">${game.format || "Unkown"}</td>
         <td data-cell="Status">${game.status || "Unkown"}</td>
         <td data-cell="Ownership">${game.ownership || "Unkown"}</td>
         <td data-cell="Purchase Date">${formattedDate}</td>
