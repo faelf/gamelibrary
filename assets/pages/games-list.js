@@ -113,7 +113,7 @@ export const gamesListPage = {
         </td>
         <td data-cell="Note">${game.note || " "}</td>
         <td data-cell="Delete" class="text-lg-center">
-          <button type="button" class="btn btn-sm btn-outline-danger"
+          <button type="button" class="btn btn-sm btn-danger"
                   data-delete-game
                   data-game-id="${game.id}">
             <span class="bi bi-trash3-fill"></span>

@@ -14,7 +14,7 @@ export const homePage = {
   <!-- Total Games -->
   <div class="col-md-6 col-xxl-3">
     <div class="card text-white bg-primary h-100">
-      <div class="card-body d-flex align-items-center">
+      <div class="card-body d-flex align-items-center text-dark">
         <div class="me-3 display-3">
           <span class="bi bi-dpad-fill"></span>
         </div>
@@ -29,7 +29,7 @@ export const homePage = {
   <!-- Games Completed -->
   <div class="col-md-6 col-xxl-3">
     <div class="card text-white bg-success h-100">
-      <div class="card-body d-flex align-items-center">
+      <div class="card-body d-flex align-items-center text-dark">
         <div class="me-3 display-3">
           <span class="bi bi-controller"></span>
         </div>
@@ -44,7 +44,7 @@ export const homePage = {
   <!-- Currently Playing -->
   <div class="col-md-6 col-xxl-3">
     <div class="card text-white bg-info h-100">
-      <div class="card-body d-flex align-items-center">
+      <div class="card-body d-flex align-items-center text-dark">
         <div class="me-3 display-3">
           <span class="bi bi-play-circle-fill"></span>
         </div>
@@ -59,7 +59,7 @@ export const homePage = {
   <!-- Backlog -->
   <div class="col-md-6 col-xxl-3">
     <div class="card text-white bg-warning h-100">
-      <div class="card-body d-flex align-items-center">
+      <div class="card-body d-flex align-items-center text-dark">
         <div class="me-3 display-3">
           <span class="bi bi-clock-history"></span>
         </div>
@@ -74,7 +74,7 @@ export const homePage = {
   <!-- Total Spent -->
   <div class="col-md-6 col-xxl-6">
     <div class="card text-white bg-danger h-100">
-      <div class="card-body d-flex align-items-center">
+      <div class="card-body d-flex align-items-center text-dark">
         <div class="me-3 display-3">
           <span class="bi bi-piggy-bank-fill"></span>
         </div>
@@ -89,7 +89,7 @@ export const homePage = {
   <!-- Total Platforms -->
   <div class="col-md-6 col-xxl-6">
     <div class="card text-white bg-secondary h-100">
-      <div class="card-body d-flex align-items-center">
+      <div class="card-body d-flex align-items-center text-dark">
         <div class="me-3 display-3">
           <span class="bi bi-nintendo-switch"></span>
         </div>
