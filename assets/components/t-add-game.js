@@ -69,7 +69,7 @@ class TAddGame extends HTMLElement {
             <div class="col-4 mb-3">
               <label for="game-price" class="form-label">Price</label>
               <div class="input-group">
-                <span class="input-group-text" id="basic-addon3">${currency}</span>
+                <span class="input-group-text">${currency}</span>
                 <input type="text" class="form-control" id="game-price" required>
               </div>
             </div>
