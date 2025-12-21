@@ -126,8 +126,8 @@ export const gamesListPage = {
       // Remove game from storage
       removeGameFromStorage(gameId);
 
-      // Refresh the games list
-      window.dispatchEvent(new CustomEvent("game-added"));
+      // Reload page
+      window.location.reload();
     }
 
     // Remove a game from localStorage by ID
@@ -141,8 +141,5 @@ export const gamesListPage = {
 
     // Initial render
     renderGames();
-
-    // Listen for game additions (refresh list when new game added)
-    window.addEventListener("game-added", renderGames);
   },
 };
