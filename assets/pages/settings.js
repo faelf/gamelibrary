@@ -1,4 +1,4 @@
-import { exportGamesToCSV, importGamesFromCSV } from "./data-manager.js";
+import { exportGamesToCSV, importGamesFromCSV } from "../data/data-manager.js";
 import { gamesStorage } from "../data/games-storage.js";
 import { config } from "../data/config.js";
 
