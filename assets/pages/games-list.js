@@ -13,7 +13,18 @@ export const gamesListPage = {
       <table class="table table-striped table-hover align-middle">
         <thead class="sticky-top">
           <tr>
-            <th>Name</th><th>Platform</th><th>Year</th><th>Status</th><th>Purchase</th><th>Price</th><th>Edit</th><th>Delete</th>
+            <th>Name</th>
+            <th>Platform</th>
+            <th>Year</th>
+            <th>Region</th>
+            <th>Condition</th>
+            <th>Format</th>
+            <th>Status</th>
+            <th>Purchase</th>
+            <th>Price</th>
+            <th>Note</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody id="games-list" class="table-group-divider">
@@ -75,10 +86,13 @@ export const gamesListPage = {
 
       tbody.innerHTML += /* html */ `
       <tr>
-        <td data-cell="Name">${game.name}</td>
-        <td data-cell="Platform">${game.platform}</td>
-        <td data-cell="Year">${game.year}</td>
-        <td data-cell="Status">${game.status}</td>
+        <td data-cell="Title">${game.title || "Unkown"}</td>
+        <td data-cell="Platform">${game.platform || "Unkown"}</td>
+        <td data-cell="Year">${game.year || "Unkown"}</td>
+        <td data-cell="Region">${game.region || "Unkown"}</td>
+        <td data-cell="Condition">${game.condition || "Unkown"}</td>
+        <td data-cell="Format">${game.format || "Unkown"}</td>
+        <td data-cell="Status">${game.status || "Unkown"}</td>
         <td data-cell="Purchase Date">${formattedDate}</td>
         <td data-cell="Price">
           ${currency}${parseFloat(game.price).toLocaleString(locale, {
@@ -86,6 +100,7 @@ export const gamesListPage = {
         maximumFractionDigits: 2,
       })}
         </td>
+        <td data-cell="Note">${game.note || " "}</td>
         <td data-cell="Edit" class="text-lg-center">
           <button type="button" class="btn btn-sm btn-outline-warning"
                   data-edit-game
