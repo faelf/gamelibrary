@@ -36,11 +36,10 @@ export const gamesListPage = {
             <th>Purchase</th>
             <th>Price</th>
             <th>Note</th>
-            <th>Edit</th>
             <th>Delete</th>
           </tr>
         </thead>
-        <tbody id="games-list" class="table-group-divider">
+        <tbody id="games-list">
         </tbody>
       </table>
     </div>
@@ -106,7 +105,7 @@ export const gamesListPage = {
         <td data-cell="Condition">${game.condition || "Unkown"}</td>
         <td data-cell="Format">${game.format || "Unkown"}</td>
         <td data-cell="Status">${game.status || "Unkown"}</td>
-        <td data-cell="Ownership">${game.ownershipStatus || "Unkown"}</td>
+        <td data-cell="Ownership">${game.ownership || "Unkown"}</td>
         <td data-cell="Purchase Date">${formattedDate}</td>
         <td data-cell="Price">
           ${currency}${parseFloat(game.price).toLocaleString(locale, {
@@ -115,13 +114,6 @@ export const gamesListPage = {
       })}
         </td>
         <td data-cell="Note">${game.note || " "}</td>
-        <td data-cell="Edit" class="text-lg-center">
-          <button type="button" class="btn btn-sm btn-outline-warning"
-                  data-edit-game
-                  data-game-id="${game.id}">
-            <span class="bi bi-pencil-square"></span>
-          </button>
-        </td>
         <td data-cell="Delete" class="text-lg-center">
           <button type="button" class="btn btn-sm btn-outline-danger"
                   data-delete-game

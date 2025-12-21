@@ -190,7 +190,7 @@ class TAddGame extends HTMLElement {
         condition: gameCondition,
         format: gameFormat,
         status: gameStatus,
-        ownershipStatus: gameOwnershipStatus,
+        ownership: gameOwnershipStatus,
         purchase_date: gamePurchaseDate,
         price: parseFloat(gamePrice).toFixed(2),
         note: gameNote,
