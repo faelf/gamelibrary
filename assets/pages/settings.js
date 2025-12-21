@@ -152,8 +152,6 @@ export const settingsPage = {
       const firstNameInput = firstName.value;
       localStorage.setItem("first-name", firstNameInput);
 
-      let lsFirstName = firstNameInput;
-
       // Show toast notification
       toastBody.innerText = `Name updated successfully!`;
       const toastElement = document.getElementById("currency-toast");
