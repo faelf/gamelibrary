@@ -39,19 +39,21 @@ class TAddGame extends HTMLElement {
               <label class="form-label" for="game-platform">Platform</label>
               <select class="form-select" id="game-platform" name="game-platform" required>
                 <option value="" selected disabled>Select a platform</option>
-                <option value="Nintendo">Nintendo</option>
+                <option value="Nintendo Entertainment System">Nintendo Entertainment System</option>
                 <option value="Super Nintendo">Super Nintendo</option>
                 <option value="Nintendo 64">Nintendo 64</option>
-                <option value="GameCube">GameCube</option>
-                <option value="Wii">Wii</option>
+                <option value="Nintendo GameCube">GameCube</option>
+                <option value="Nintendo Wii">Wii</option>
+                <option value="Nintendo Wii U">Wii U</option>
                 <option value="Nintendo Switch">Nintendo Switch</option>
                 <option value="Nintendo Switch 2">Nintendo Switch 2</option>
-                <option value="PC">PC</option>
                 <option value="Game Boy">Game Boy</option>
                 <option value="Game Boy Color">Game Boy Color</option>
                 <option value="Game Boy Advance">Game Boy Advance</option>
                 <option value="Nintendo DS">Nintendo DS</option>
                 <option value="Nintendo 3DS">Nintendo 3DS</option>
+                <option value="PC">PC</option>
+                <option value="Steam">Steam</option>
               </select>
             </div>
             <!-- Game Status -->
@@ -80,13 +82,12 @@ class TAddGame extends HTMLElement {
               <label class="form-label" for="game-region">Region</label>
               <select class="form-select" id="game-region" name="game-region">
                 <option value="" selected disabled>Select region</option>
-                <option value="PAL">PAL</option>
-                <option value="PAL UK">PAL UK</option>
-                <option value="PAL FR">PAL FR</option>
-                <option value="PAL DE">PAL DE</option>
-                <option value="NTSC-U">NTSC-U</option>
-                <option value="NTSC-J">NTSC-J</option>
-                <option value="NTSC-K">NTSC-K</option>
+                <option value="Europe">Europe</option>
+                <option value="UK">UK</option>
+                <option value="France">France</option>
+                <option value="Germany">Germany</option>
+                <option value="North America">North America</option>
+                <option value="Japan">Japan</option>
                 <option value="Region Free">Region Free</option>
               </select>
             </div>
@@ -159,15 +160,12 @@ class TAddGame extends HTMLElement {
       const gamePlatform = document.getElementById("game-platform").value;
       const gameStatus = document.getElementById("game-status").value;
       const gameYear = document.getElementById("game-year").value;
-      const gamePurchaseDate =
-        document.getElementById("game-purchase-date").value;
+      const gamePurchaseDate = document.getElementById("game-purchase-date").value;
       const gamePrice = document.getElementById("game-price").value;
       const gameRegion = document.getElementById("game-region").value;
       const gameNote = document.getElementById("game-note").value;
       const gameCondition = document.getElementById("game-condition").value;
-      const gameOwnershipStatus = document.getElementById(
-        "game-ownership-status"
-      ).value;
+      const gameOwnershipStatus = document.getElementById("game-ownership-status").value;
 
       // Create new game object
       const newGame = {
@@ -194,9 +192,7 @@ class TAddGame extends HTMLElement {
       gamesStorage.save(games);
 
       // Close the modal
-      const modal = bootstrap.Modal.getInstance(
-        document.getElementById("add-game")
-      );
+      const modal = bootstrap.Modal.getInstance(document.getElementById("add-game"));
       modal.hide();
 
       // Clear the form
