@@ -11,7 +11,6 @@ export const formatters = {
     });
   },
   price(price) {
-    const currency = config.getCurrency();
     const locale = config.getLocale();
     price = parseFloat(price);
     return `${price.toLocaleString(locale, {
