@@ -1,4 +1,3 @@
-import { config } from "../data/config.js";
 import { gamesStorage } from "../data/games-storage.js";
 
 export const gamesListPage = {
@@ -108,10 +107,6 @@ export const gamesListPage = {
 
     // Render a single game row
     function addGameRowToTable(game, tbody) {
-      const currency = config.getCurrency();
-      const locale = config.getLocale();
-      const formattedDate = formatPurchaseDate(game.purchase_date);
-
       tbody.innerHTML += /* html */ `
       <tr>
         <td data-cell="Title">
