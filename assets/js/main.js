@@ -1,21 +1,5 @@
 // Import pages
-import { homePage } from "../pages/home.js";
-import { gamesListPage } from "../pages/games-list.js";
-import { settingsPage } from "../pages/settings.js";
-import { gameDetailsPage } from "../pages/game-details.js";
-
-// Import components
-import "../components/t-navbar.js";
-import "../components/t-footer.js";
-import "../components/t-add-game.js";
-
-// Combine all pages into the pageContent object
-const pageContent = {
-  "dashboard-page": homePage,
-  "games-list-page": gamesListPage,
-  "settings-page": settingsPage,
-  "game-details-page": gameDetailsPage,
-};
+import { pageContent } from "../pages/index.js";
 
 // Get a reference to the main content area where pages will be injected
 const mainContentArea = document.getElementById("page-content");
