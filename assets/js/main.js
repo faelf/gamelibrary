@@ -1,5 +1,10 @@
-// Import pages
+// Import Pages
 import { pageContent } from "../pages/index.js";
+
+// Import components
+import "../components/t-navbar.js";
+import "../components/t-footer.js";
+import "../components/t-add-game.js";
 
 // Get a reference to the main content area where pages will be injected
 const mainContentArea = document.getElementById("page-content");
