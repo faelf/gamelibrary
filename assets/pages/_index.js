@@ -1,8 +1,8 @@
 // Import pages
-import { homePage } from "../pages/home.js";
-import { gamesListPage } from "../pages/games-list.js";
-import { settingsPage } from "../pages/settings.js";
-import { gameDetailsPage } from "../pages/game-details.js";
+import { homePage } from "./home.js";
+import { gamesListPage } from "./games-list.js";
+import { settingsPage } from "./settings.js";
+import { gameDetailsPage } from "./game-details.js";
 
 // Combine all pages into the pageContent object
 export const pageContent = {
