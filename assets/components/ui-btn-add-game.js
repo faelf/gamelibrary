@@ -1,4 +1,4 @@
-import { config } from "../data/config.js";
+import { config } from "../utils/config.js";
 import { gamesStorage } from "../data/games-storage.js";
 
 class TAddGame extends HTMLElement {

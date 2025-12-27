@@ -1,4 +1,4 @@
-import { config } from "../data/config.js";
+import { config } from "../utils/config.js";
 import { formatters } from "../utils/formatters.js";
 import { stats } from "../data/stats.js";
 

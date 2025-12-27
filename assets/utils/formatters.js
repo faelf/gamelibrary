@@ -1,4 +1,4 @@
-import { config } from "../data/config.js";
+import { config } from "./config.js";
 
 export const formatters = {
   longDate(dateString) {

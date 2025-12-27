@@ -1,6 +1,6 @@
 import { exportGamesToCSV, importGamesFromCSV } from "../data/data-manager.js";
 import { gamesStorage } from "../data/games-storage.js";
-import { config } from "../data/config.js";
+import { config } from "../utils/config.js";
 import { toast } from "../utils/toast.js";
 
 export const settingsPage = {
@@ -209,10 +209,7 @@ export const settingsPage = {
 
     // Delete Data
     deleteData.addEventListener("click", function () {
-      toast.success(
-        "All game data deleted successfully!",
-        "Are you sure? This action cannot be undone."
-      );
+      toast.success("All game data deleted successfully!", "Are you sure? This action cannot be undone.");
 
       gamesData = [];
       gamesStorage.save(gamesData);

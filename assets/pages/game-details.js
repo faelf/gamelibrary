@@ -1,5 +1,5 @@
 import { gamesStorage } from "../data/games-storage.js";
-import { config } from "../data/config.js";
+import { config } from "../utils/config.js";
 import { formatters } from "../utils/formatters.js";
 
 export const gameDetailsPage = {
