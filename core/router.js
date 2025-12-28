@@ -61,7 +61,6 @@ export class Router {
     Dispatches a 'navigate' event to update the page content.
   */
   handleClick(event) {
-    console.log(event.target);
     // Find the closest element with the data-page attribute
     const button = event.target.closest("[data-page-target]");
     // Ignore clicks outside navigational elements
@@ -85,8 +84,6 @@ export class Router {
     Updates the main content area to the requested page.
   */
   handleNavigate(event) {
-    console.log("Navigating to:", event.detail.page);
-    console.log("With params:", event.detail);
     this.updateMainContent(event.detail.page, event.detail);
   }
 
