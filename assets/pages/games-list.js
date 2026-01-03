@@ -1,4 +1,5 @@
 import { gamesStorage } from "../data/games-storage.js";
+import { toast } from "../utils/toast.js";
 
 export const gamesListPage = {
   title: "Games List",
@@ -106,8 +107,24 @@ export const gamesListPage = {
         </td>
         <td data-cell="Platform">${game.platform || "Unkown"}</td>
         <td data-cell="Region">${game.region || "Unkown"}</td>
-        <td data-cell="Status">${game.status || "Unkown"}</td>
-        <td data-cell="Ownership">${game.ownership || "Unkown"}</td>
+        <td data-cell="Status">
+          <select class="form-select form-select-sm status-select" data-field="status" data-id="${game.id}">
+            <option value="" disabled>Status</option>
+            <option value="Not started" ${game.status === "Not started" ? "selected" : ""}>Not started</option>
+            <option value="Playing" ${game.status === "Playing" ? "selected" : ""}>Playing</option>
+            <option value="Completed" ${game.status === "Completed" ? "selected" : ""}>Completed</option>
+          </select>
+        </td>
+        <td data-cell="Ownership">
+          <select class="form-select form-select-sm ownership-select" data-field="ownership" data-id="${game.id}">
+            <option value="" disabled>Select ownership status</option>
+            <option value="In Collection" ${game.ownership === "In Collection" ? "selected" : ""}>In Collection</option>
+            <option value="Borrowed" ${game.ownership === "Borrowed" ? "selected" : ""}>Borrowed</option>
+            <option value="Lent Out" ${game.ownership === "Lent Out" ? "selected" : ""}>Lent to Someone</option>
+            <option value="Sold" ${game.ownership === "Sold" ? "selected" : ""}>Sold</option>
+          </select>
+        </td>
+
         <td data-cell="Delete" class="text-lg-center">
           <button type="button" class="btn btn-sm btn-danger"
                   data-delete-game
@@ -119,12 +136,43 @@ export const gamesListPage = {
     `;
     }
 
+    // Handle changes in select elements
+    document.addEventListener("change", (e) => {
+      const select = e.target.closest(".form-select");
+      if (!select) return;
+
+      const gameId = Number(select.dataset.id);
+      const field = select.dataset.field;
+      const value = select.value;
+
+      if (!gameId || !field) return;
+
+      const games = gamesStorage.load();
+      const game = games.find((g) => g.id === gameId);
+
+      if (!game) return;
+
+      game[field] = value;
+
+      gamesStorage.save(games);
+      toast.success("Game updated successfully!");
+    });
+
     // Attach click handlers to all delete buttons
     function setupDeleteButtons() {
       const deleteButtons = document.querySelectorAll("[data-delete-game]");
       deleteButtons.forEach(function (button) {
         button.addEventListener("click", handleDeleteGame);
       });
+    }
+
+    // Remove a game from localStorage by ID
+    function removeGameFromStorage(gameId) {
+      const games = gamesStorage.load();
+      const updatedGames = games.filter(function (game) {
+        return game.id !== gameId;
+      });
+      gamesStorage.save(updatedGames);
     }
 
     // Handle game deletion
@@ -143,15 +191,6 @@ export const gamesListPage = {
 
       // Reload page
       window.location.reload();
-    }
-
-    // Remove a game from localStorage by ID
-    function removeGameFromStorage(gameId) {
-      const games = gamesStorage.load();
-      const updatedGames = games.filter(function (game) {
-        return game.id !== gameId;
-      });
-      gamesStorage.save(updatedGames);
     }
 
     // Initial render
