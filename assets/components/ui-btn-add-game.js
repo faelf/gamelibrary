@@ -94,7 +94,7 @@ class TAddGame extends HTMLElement {
             <!-- Game Year -->
             <div class="col-sm-6 col-md-4 mb-3">
               <label for="game-year" class="form-label">Year</label>
-              <input type="text" class="form-control" id="game-year">
+              <input type="number" class="form-control" id="game-year">
             </div>
             <!-- Game Purchase Date -->
             <div class="col-sm-6 col-md-4 mb-3">
