@@ -6,7 +6,7 @@ export const gameDetailsPage = {
   title: "Game Details",
   html: /* html */ `
   <section id="game-details-container" class="mt-2">
-    <h2 id="game-title"></h2>
+    <h2 class="mb-3" id="game-title"></h2>
   
       <form class="col-12 col-md-10 col-lg-8 col-xl-6 mx-auto">
         <!-- Title Input -->
@@ -49,7 +49,7 @@ export const gameDetailsPage = {
         <!-- Year Input -->
         <div class="row mb-3">
           <div class="col-12 col-sm-4">
-            <label for="game-year-input" class="form-label">Year</label>
+            <label for="game-year-input" class="form-label">Release year</label>
           </div>
           <div class="col-12 col-sm-8">
             <input id="game-year-input" type="number" class="form-control">
@@ -85,11 +85,14 @@ export const gameDetailsPage = {
               <option value="" disabled>Select a condition</option>
               <option value="Sealed">Sealed</option>
               <option value="Collector's Edition">Collector's Edition</option>
-              <option value="CIB">Complete in Box (CIB)</option>
-              <option value="Box & Game">Box & Game</option>
-              <option value="Game & Manual">Game & Manual</option>
-              <option value="Cartridge only">Game Only / Cartridge Only (Loose)</option>
-              <option value="Digital">Digital Copy</option>
+              <option value="CIB">Complete in box</option>
+              <option value="Game and box">Game & Box</option>
+              <option value="Game and manual">Game & Manual</option>
+              <option value="Game only">Game only</option>
+              <option value="Box and manual">Box & Manual</option>
+              <option value="Box only">Box only</option>
+              <option value="Manual only">Manual only</option>
+              <option value="Digital">Digital</option>
             </select>
           </div>
         </div>
