@@ -170,7 +170,7 @@ export const gameDetailsPage = {
 
         <div class="col text-end">
           <button id="save-game-btn" class="btn btn-primary">
-            <span class="bi bi-floppy"></span>Save Changes
+            <span class="bi bi-check-circle-fill me-2"></span>Save Changes
           </button>
         </div>
       </div>
